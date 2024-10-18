@@ -5,7 +5,7 @@ Tags: popular posts, post, posts, most read, least read, more read, top posts, l
 Requires at least: 2.9+
 Requires PHP: 7.0
 Tested up to: 6.6
-Stable tag: 2.5.19
+Stable tag: 2.5.20
 
 Provide two widgets, showing lists of the most and reast read posts.
 
@@ -96,10 +96,11 @@ E.g. 50x50 pixels images, floating on the right:
 
 == Changelog ==
 
-= 2.5.19 =
+= 2.5.20 =
 * Plugin tested up WordPress 6.6
 * Fixed: SQL injection
 * Fixed: CSS injection
+* Fixed: PHP warnings
 
 = 2.5.5 =
 * Added: New "Add line break before thumb", "Limit post titles to X chars" and "Show post excerpts" options

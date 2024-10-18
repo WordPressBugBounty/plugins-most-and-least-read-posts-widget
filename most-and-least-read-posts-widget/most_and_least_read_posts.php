@@ -5,7 +5,7 @@ Plugin URI: https://www.whiletrue.it/
 Description: Provide two widgets, showing lists of the most and reast read posts.
 Author: WhileTrue
 Text Domain: most-and-least-read-posts-widget
-Version: 2.5.19
+Version: 2.5.20
 Author URI: https://www.whiletrue.it/
 */
 /*
@@ -227,11 +227,11 @@ function most_and_least_read_posts($instance, $order)
 	$out = '';
 	if ($output) {
 		foreach ($output as $line) {
-			$hits_text = ($instance['show_hits_text'] != '') ? ' ' . $instance['show_hits_text'] : '';
+			$hits_text = (($instance['show_hits_text'] ?? '') != '') ? ' ' . $instance['show_hits_text'] : '';
 			$hits = ($instance['show_hits']) ? ' (' . number_format((int) $line->meta_value) . $hits_text . ')' : '';
 
 			$media = '';
-			if ($instance['show_thumbs']) {
+			if ($instance['show_thumbs'] ?? false) {
 				$media = '';
 				// TRY TO USE THE THUMBNAIL, OTHERWHISE TRY TO USE THE FIRST ATTACHMENT
 				if (function_exists('has_post_thumbnail') and has_post_thumbnail($line->ID)) {
@@ -265,7 +265,7 @@ function most_and_least_read_posts($instance, $order)
 				}
 			}
 			$text = $media . $post_title_shown;
-			if ($instance['add_line_break_before_thumbs']) {
+			if ($instance['add_line_break_before_thumbs'] ?? false) {
 				$text = $line->post_title . '<br>' . $media;
 			}
 			$excerpt = '';
@@ -427,19 +427,22 @@ function most_and_least_read_posts_feed()
 		$maxitems = $rss->get_item_quantity($select);
 		$rss_items = $rss->get_items(0, $maxitems);
 	}
-	if (!empty($maxitems)) {
-		$out .= '
-			<div class="rss-widget">
-				<ul>';
-		foreach ($rss_items as $item) {
-			$out .= '
-						<li><a class="rsswidget" href="' . $item->get_permalink() . '">' . $item->get_title() . '</a> 
-							<span class="rss-date">' . date_i18n(get_option('date_format'), strtotime($item->get_date('j F Y'))) . '</span></li>';
-		}
-		$out .= '
-				</ul>
-			</div>';
+	if (empty($maxitems)) {
+		return '';
 	}
+
+	$out = '
+		<div class="rss-widget">
+			<ul>';
+	foreach ($rss_items as $item) {
+		$out .= '
+				<li><a class="rsswidget" href="' . $item->get_permalink() . '">' . $item->get_title() . '</a> 
+					<span class="rss-date">' . date_i18n(get_option('date_format'), strtotime($item->get_date('j F Y'))) . '</span></li>';
+	}
+	$out .= '
+			</ul>
+		</div>';
+
 	return $out;
 }
 
