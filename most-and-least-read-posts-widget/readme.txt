@@ -4,8 +4,8 @@ Donate link: https://www.whiletrue.it/
 Tags: popular posts, post, posts, most read, least read, more read, top posts, less read, sidebar, widget, links 
 Requires at least: 2.9+
 Requires PHP: 7.0
-Tested up to: 6.6
-Stable tag: 2.5.20
+Tested up to: 6.8
+Stable tag: 2.5.21
 
 Provide two widgets, showing lists of the most and reast read posts.
 
@@ -96,11 +96,9 @@ E.g. 50x50 pixels images, floating on the right:
 
 == Changelog ==
 
-= 2.5.20 =
-* Plugin tested up WordPress 6.6
-* Fixed: SQL injection
-* Fixed: CSS injection
-* Fixed: PHP warnings
+= 2.5.21 =
+* Plugin tested up WordPress 6.8
+* Fixed: XSS vulnerability
 
 = 2.5.5 =
 * Added: New "Add line break before thumb", "Limit post titles to X chars" and "Show post excerpts" options
@@ -112,18 +110,6 @@ E.g. 50x50 pixels images, floating on the right:
 * Changed: web spiders update
 * Changed: Avangate ads removal
 * Changed: Skip updating hits if user is admin
-
-= 1.9 =
-* Added: option to show hits inside the post content or after the post title
-* Added: style customization of hits on widget, through the "most_and_least_read_posts_hits" CSS class
-* Added: option to exclude posts older than XX days (default: 365 days)
-* Added: Frequently Asked Questions
-* Added: archived post hits are now shown in a column inside the backend post list
-* Added: php function to retrieve and show hits inside the template loop
-* Added: show post thumbs option
-* Added: "mlrp_ul" ul class for easy CSS styling
-* Added: support for WPML plugin, showing most/least read posts for current language
-* Changed: hits on widget put out of the link
 
 = 1.0.0 =
 Initial release

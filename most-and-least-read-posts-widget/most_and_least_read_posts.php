@@ -5,7 +5,7 @@ Plugin URI: https://www.whiletrue.it/
 Description: Provide two widgets, showing lists of the most and reast read posts.
 Author: WhileTrue
 Text Domain: most-and-least-read-posts-widget
-Version: 2.5.20
+Version: 2.5.21
 Author URI: https://www.whiletrue.it/
 */
 /*
@@ -227,7 +227,7 @@ function most_and_least_read_posts($instance, $order)
 	$out = '';
 	if ($output) {
 		foreach ($output as $line) {
-			$hits_text = (($instance['show_hits_text'] ?? '') != '') ? ' ' . $instance['show_hits_text'] : '';
+			$hits_text = (($instance['show_hits_text'] ?? '') != '') ? ' ' . esc_attr($instance['show_hits_text']) : '';
 			$hits = ($instance['show_hits']) ? ' (' . number_format((int) $line->meta_value) . $hits_text . ')' : '';
 
 			$media = '';
